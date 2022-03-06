@@ -7,7 +7,7 @@ class FibonacciTest {
 
     @Test
     @DisplayName("Passed Zero as value")
-    void fibonacciRecursivePassedZeroAsValue() {
+    void fibonacciRecursivePassedZeroAsValue() throws Exception {
         Fibonacci fibonacci = new Fibonacci();
         int sum = fibonacci.fibonacciRecursive(0);
         assertEquals(0,sum);
@@ -15,7 +15,7 @@ class FibonacciTest {
 
     @Test
     @DisplayName("Passed One as value")
-    void fibonacciRecursivePassedOneAsValue() {
+    void fibonacciRecursivePassedOneAsValue() throws Exception {
         Fibonacci fibonacci = new Fibonacci();
         int sum = fibonacci.fibonacciRecursive(1);
         assertEquals(1,sum);
@@ -25,7 +25,15 @@ class FibonacciTest {
     @DisplayName("Passed Negative value")
     void fibonacciRecursivePassedNegativeValue() {
         Fibonacci fibonacci = new Fibonacci();
-        int sum = fibonacci.fibonacciRecursive(-11);
-        //10th element is equal to 55
+        //Testing if an error pops up
+        assertThrows(Exception.class, ()->new Fibonacci().fibonacciRecursive(-11));
+    }
+
+    @Test
+    @DisplayName("Passed Large value")
+    void fibonacciRecursivePassedLargeValue() {
+        Fibonacci fibonacci = new Fibonacci();
+        //Testing if an error pops up
+        assertThrows(StackOverflowError.class, ()->new Fibonacci().fibonacciRecursive(29013231));
     }
 }
